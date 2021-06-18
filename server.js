@@ -3,10 +3,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const {Task} = require('./models/task')
+const cors = require('cors')
 
 app.use(express.json())
 app.use(express.urlencoded())
-
+app.use(cors())
 mongoose.connect(process.env.DB_URI,{useNewUrlParser:true, useUnifiedTopology:true}, (err)=>{
   if(err)
     console.log("DB not connected :(")
