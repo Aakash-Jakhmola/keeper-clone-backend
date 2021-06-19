@@ -48,7 +48,11 @@ app.post("/" , (req,res)=>{
 
 
 app.patch("/:taskId",(req,res)=> {
-  Task.findByIdAndUpdate(req.params.taskId, req.body.data,  { safe: true, upsert: true } , (err)=> {
+  let newTask = { 
+                  title : req.body.title, 
+		  body : req.body.body
+                }
+  Task.findByIdAndUpdate(req.params.taskId, newTask ,  { safe: true, upsert: true } , (err)=> {
     if(err) {
       console.log(err)
       res.send({error : err})
